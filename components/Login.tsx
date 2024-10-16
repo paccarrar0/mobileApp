@@ -47,8 +47,4 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 10
   }
-
-  button: {
-
-  }
 });
