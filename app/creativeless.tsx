@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-import { Link, Stack } from 'expo-router'
+import { Link, Stack, useLocalSearchParams } from 'expo-router'
 
-export default class creativeless extends Component {
-  render() {
-    return (
-      <View>
+export default function creativeless() {
+  const { id } = useLocalSearchParams();
+
+  return (
+    <View>
       <Stack.Screen
         options={{
           title: "Matrioshka Creativeless",
@@ -16,14 +17,14 @@ export default class creativeless extends Component {
         }}
       />
       <View >
-        <Text style = {styles.receptionText}>Ops, parece que faltou criatividade para continuar a falta de criatividade de matrioshka</Text>
-        <Link style = {styles.link} href={"/creativity"}>Você pode voltar para a página inicial clicando aqui!</Link>
-        <Text style = {styles.receptionText}>Ah! Seu parametro é aleatório foi</Text>
+        <Text style={styles.receptionText}>Ops, parece que faltou criatividade para continuar a falta de criatividade de matrioshka</Text>
+        <Link style={styles.link} href={"/creativity"}>Você pode voltar clicando aqui!</Link>
+        <Text style={styles.paramText}>Ah! Seu parametro é aleatório e sem nenhuma criatividade foi <Text style={styles.param}>{id}</Text></Text>
       </View>
     </View>
-    )
-  }
+  )
 }
+
 
 const styles = StyleSheet.create({
   receptionText: {
@@ -36,5 +37,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: "5%",
     color: "#00BFFF",
+  },
+
+  paramText: {
+    fontSize: 15,
+    marginTop: 10,
+    marginLeft: "5%"
+  },
+
+  param: {
+    color: "#00BFFF"
   }
 })

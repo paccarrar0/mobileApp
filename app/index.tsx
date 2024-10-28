@@ -23,7 +23,7 @@ export default function index() {
       />
       <View>
         <View style={styles.card}>
-          <Text style={styles.cardText}>Falta de criatividade 1</Text>
+          <Text style={styles.cardText}>Falta de criatividade de matrioshka</Text>
           <View style={styles.cardButton}>
             <Button title="Acessar" onPress={handleNavigation} />
           </View>

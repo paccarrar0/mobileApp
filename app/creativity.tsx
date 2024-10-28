@@ -3,6 +3,8 @@ import { Link, Stack } from 'expo-router'
 import { StyleSheet, Text, View } from 'react-native'
 
 export default function creativity() {
+  const randomId = Math.floor(Math.random() * 100);
+
   return (
     <View>
       <Stack.Screen
@@ -16,7 +18,7 @@ export default function creativity() {
       />
       <View>
         <Text style = {styles.receptionText}>Bem vindo à falta de criatividade de Matrioshka</Text>
-        <Link style = {styles.link} href={"/creativeless"}>Clique aqui para continuar</Link>
+        <Link style = {styles.link} href={{pathname: '/creativeless', params: {id: randomId}}}>Clique aqui para continuar</Link>
       </View>
     </View>
   )
