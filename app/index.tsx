@@ -1,57 +1,72 @@
-import { View, Text, StyleSheet, Button } from "react-native";
+import CheckoutButton from "@/components/checkout/CheckoutButton";
+import PriceTag from "@/components/checkout/PriceTag";
+import Card from "@/components/containers/Card";
+import Scrollable from "@/components/containers/Scrollable";
+import HeaderHidden from "@/components/headers/HeaderHidden";
+import HeaderWithTitle from "@/components/headers/HeaderWithTitle";
+import { router } from "expo-router";
 import React from "react";
-import { Stack } from "expo-router";
-import { useRouter } from "expo-router";
+import { Text, View } from "react-native";
+
+/**
+ * index: carrinho produtos
+ * checkout: total, meio de pagamento
+ * compra concluída
+ */
 
 export default function index() {
-  const router = useRouter();
-
-  const handleNavigation = () => {
-    router.navigate("/creativity");
+  const handleCheckout = () => {
+    router.push("/checkout");
   };
 
   return (
-    <View>
-      <Stack.Screen
-        options={{
-          title: "Home",
-          headerTitleStyle: {
-            fontWeight: "bold",
-            fontSize: 25,
-          }
-        }}
-      />
-      <View>
-        <View style={styles.card}>
-          <Text style={styles.cardText}>Falta de criatividade de matrioshka</Text>
-          <View style={styles.cardButton}>
-            <Button title="Acessar" onPress={handleNavigation} />
-          </View>
-        </View>
-      </View>
-    </View>
+    <Scrollable>
+      <HeaderWithTitle title="Shopping Cart" />
+
+      <Card title="Mouse sem fio 2.4Ghz">
+        <Text>
+          O mouse TGT Vector E1 é o equip perfeito para você que está iniciando
+          sua jornada gamer e deseja aumentar a precisão de seu setup!
+          Desenvolvido para ter o ótimo desempenho em todos os tipos de jogos,
+          este mouse é sua nova arma de combate!
+        </Text>
+        <Text>R$50,00</Text>
+      </Card>
+
+      <Card title="Teclado Mancer Shade">
+        <Text>
+          O teclado Mancer Shade MK2 é o item indispensável para sua próxima
+          batalha! Ele possui formato TKL em padrão ABNT2 (padrão brasileiro).
+          Foi desenvolvido com tudo que um gamer precisa, ele te levará para o
+          próximo nível!
+        </Text>
+
+        <PriceTag price={119} />
+      </Card>
+
+      <Card title="Mouse sem fio 2.4Ghz">
+        <Text>
+          O mouse TGT Vector E1 é o equip perfeito para você que está iniciando
+          sua jornada gamer e deseja aumentar a precisão de seu setup!
+          Desenvolvido para ter o ótimo desempenho em todos os tipos de jogos,
+          este mouse é sua nova arma de combate!
+        </Text>
+
+        <PriceTag price={119} />
+      </Card>
+
+      <Card title="Teclado Mancer Shade">
+        <Text>
+          O teclado Mancer Shade MK2 é o item indispensável para sua próxima
+          batalha! Ele possui formato TKL em padrão ABNT2 (padrão brasileiro).
+          Foi desenvolvido com tudo que um gamer precisa, ele te levará para o
+          próximo nível!
+        </Text>
+
+        <PriceTag price={119} />
+      </Card>
+
+      <CheckoutButton onPress={handleCheckout} />
+    </Scrollable>
   );
 }
-
-const styles = StyleSheet.create({
-  cardText: {
-    textAlign: "center",
-  },
-
-  cardButton: {
-    width: "90%",
-    marginHorizontal: "auto",
-    marginTop: 15,
-  },
-
-  card: {
-    marginHorizontal: "auto",
-    marginVertical: 10,
-    width: "75%",
-    paddingVertical: 20,
-    borderWidth: 1,
-    borderRadius: 7,
-    shadowOpacity: 1,
-    shadowColor: "black",
-  },
-});
