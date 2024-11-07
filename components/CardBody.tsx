@@ -1,6 +1,7 @@
-import { View, Image, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, Image, StyleSheet, TouchableOpacity, Text, Touchable } from "react-native";
 import React, { useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
+import { Picker } from "@react-native-picker/picker";
 
 
 type CardBodyProps = {
@@ -9,10 +10,10 @@ type CardBodyProps = {
 
 export default function CardBody({ title }: CardBodyProps) {
   const [isChecked, setIsChecked] = useState(true)
-  const [selectedValue, setSelectedValue] = useState("")
+  const [selectedValue, setSelectedValue] = useState("SATA Para USB3.0");
 
   return (
-    <View>
+    <View style={{borderBottomWidth: 1, borderColor: "#C7C7C7"}}>
       <View style={{ flexDirection: "row", gap: 10 }}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <TouchableOpacity
@@ -34,7 +35,25 @@ export default function CardBody({ title }: CardBodyProps) {
         </View>
         <View>
           <Text style={styles.title}>{title}</Text>
-          
+          <Picker
+            selectedValue={selectedValue}
+            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+            style={styles.picker}
+          >
+            <Picker.Item style={{ width: 100 }} label="SATA Para USB3.0" value="SATA Para USB3.0" />
+            <Picker.Item label="Python" value="python" />
+            <Picker.Item label="C++" value="cpp" />
+          </Picker>
+          <View style={styles.badge2}><FontAwesome style={{ marginLeft: 4 }} name="fighter-jet" color={"white"} />
+            <Text style={{ fontSize: 7, marginLeft: 3, color: "white" }}>FRETE GRÁTIS acima de R$19</Text>
+          </View>
+          <View style={{ flexDirection: "row"}}>
+            <Text style={{ color: "#ED4D2D", fontSize: 12, fontWeight: "bold" }}>R$19,60</Text>
+            <Text
+              style={{ color: "#C7C7C7", textDecorationLine: "line-through", fontSize: 8, alignContent: "center", marginLeft: 5 }}>
+              R$40,83
+            </Text>
+          </View>
         </View>
       </View>
     </View>)
@@ -63,6 +82,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#ED4D2D',
     borderColor: '#ED4D2D',
     color: "white"
+  },
+  badge2: {
+    flexDirection: "row",
+    backgroundColor: "#113567",
+    width: 130,
+    alignItems: "center",
+    marginBottom: 15
   },
   checkbox: {
     width: 20,
@@ -93,18 +119,14 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     color: "black",
     paddingRight: 30,
-  }
-});
-
-const pickerSelectStyles = StyleSheet.create({
-  input: {
-    fontSize: 16,
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: "gray",
-    borderRadius: 4,
-    color: "black",
-    paddingRight: 30, // adiciona espaço para o ícone do dropdown
   },
+  picker: {
+    fontSize: 8,
+    height: 20,
+    width: 130,
+    borderRadius: 5,
+    backgroundColor: "#F5F5F5",
+    borderColor: "#F5F5F5",
+    marginVertical: 5
+  }
 });

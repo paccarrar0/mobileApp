@@ -7,11 +7,6 @@ import { StyleSheet, Text} from "react-native";
 import CardBody from "@/components/CardBody";
 
 export default function index() {
-  const handleCheckout = () => {
-    router.push("/checkout");
-  };
-
-  const [isChecked, setIsChecked] = useState(false)
 
   return (
     <Scrollable>
@@ -19,7 +14,7 @@ export default function index() {
       <Card>
         <CardHeader shopName="Oficial Choice"></CardHeader>
         <CardBody title="Adaptador SATA Para USB 3.0 6 ..."></CardBody>
-        <Text>R$50,00</Text>
+        <Text>Ver todos os cupons da loja</Text>
       </Card>
 
 
