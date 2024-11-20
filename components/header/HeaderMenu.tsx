@@ -3,30 +3,57 @@ import React from 'react'
 import { FontAwesome } from '@expo/vector-icons';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useRouter } from 'expo-router';
+import { useAuth } from '../../AuthContext';
 
-export default function HeaderMenu() {
+type HeaderMenuProps = {
+  about: boolean
+}
 
-  const router = useRouter()
+export default function HeaderMenu({ about }: HeaderMenuProps) {
+  const router = useRouter();
+  const { logout } = useAuth();
 
   const handleNavigation = (path: string) => {
     router.navigate(path)
+  }
+
+  const aboutActionSheet = () => {
+    if (about)
+      return ["Sobre", "Logout"]
+
+    return ["Logout"]
   }
 
   const { showActionSheetWithOptions } = useActionSheet();
 
   const handlePress = () => {
     showActionSheetWithOptions({
-      options: ["Sobre", "Logout"]
+      options: aboutActionSheet()
     },
       (i) => {
-        switch (i) {
-          case 0:
-            handleNavigation("/sobre")
-          case 1: 
-            handleNavigation("/listagem")
-        }
+        getIndexByScreen(i)
       }
     )
+  }
+
+  const getIndexByScreen = (i: number | undefined) => {
+    if (about) {
+      switch (i) {
+        case 0:
+          handleNavigation("/sobre")
+          break;
+        case 1:
+          logout();
+          break;
+      }
+    }
+    else {
+      switch (i) {
+        case 0:
+          logout();
+          break;
+      }
+    }
   }
 
   return (

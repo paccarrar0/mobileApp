@@ -1,5 +1,6 @@
 import { View, Text, Pressable, StyleSheet, Animated, Image } from 'react-native'
 import React, {useRef } from 'react'
+import { DEFAULT_RADIUS } from '../constants/globalStyles'
 
 type ButttonProps = {
   handleLogin: () => void
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: DEFAULT_RADIUS,
     borderColor: "#000000",
     alignItems: "center"
   },
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     width: 70,
     height: 20,
     position: "absolute",
-    borderRadius: 5,
+    borderRadius: DEFAULT_RADIUS,
     zIndex: 0
   },
   buttonText: {

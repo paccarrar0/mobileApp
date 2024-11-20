@@ -1,5 +1,6 @@
 import { View, TextInput, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
+import { DEFAULT_RADIUS } from '../constants/globalStyles'
 
 type InputProps = {
   password: boolean
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
   input: {
     borderColor: "#000000",
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: DEFAULT_RADIUS,
     padding: 5
   }
 });

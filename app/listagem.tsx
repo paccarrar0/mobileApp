@@ -1,28 +1,38 @@
-import { View, Text, StyleSheet, Button, TextInput, TextInputComponent } from "react-native";
+import { View, StyleSheet, Text} from "react-native";
 import React, { useEffect } from "react";
-import { Stack, useNavigation } from "expo-router";
 import { useRouter } from "expo-router";
 import Footer from "../components/Footer";
 import FullScreen from "../components/container/FullScreen";
 import HeaderWithTitle from "../components/header/HeaderWithTitle";
 import { useAuth } from "../AuthContext";
+import Scrollable from "../components/container/Scrollable";
+import Card from "../components/container/Card";
 
-export default function index() {
+
+export default function Listagem() {
   const router = useRouter();
+  const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.replace("/")
+    }
+  }), [isAuthenticated, router]
 
   return (
     <FullScreen>
-      <View>
-        <HeaderWithTitle title="Listagem" />
+      <Scrollable>
         <View>
-
-          <View style={styles.cardButton}>
-            <Button title="Acessar"/>
-
+          <HeaderWithTitle title="Listagem" about={true} />
+          <View>
+            <Text style={styles.cardTitle}>Lorem Ipsum</Text>
+            <Card>
+              <View></View>
+            </Card>
           </View>
-        </View>
 
-      </View>
+        </View>
+      </Scrollable>
       <Footer></Footer>
     </FullScreen>
 
@@ -50,4 +60,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowColor: "black",
   },
+  cardTitle: {
+    marginTop: 30,
+    marginBottom: 45,
+    alignSelf: "center",
+    fontSize: 35
+  }
 });

@@ -1,51 +1,66 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-import { Link, Stack, useLocalSearchParams } from 'expo-router'
+import { Link, router, Stack, useLocalSearchParams } from 'expo-router'
+import { useAuth } from '../AuthContext';
+import HeaderWithTitle from '../components/header/HeaderWithTitle';
+import FullScreen from '../components/container/FullScreen';
+import Footer from '../components/Footer';
+import Card from '../components/container/Card';
+import Scrollable from '../components/container/Scrollable';
 
 export default function creativeless() {
   const { id } = useLocalSearchParams();
+  const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.replace("/")
+    }
+  }), [isAuthenticated, router]
 
   return (
-    <View>
-      <Stack.Screen
-        options={{
-          title: "Matrioshka Creativeless",
-          headerTitleStyle: {
-            fontWeight: "bold",
-            fontSize: 19,
-          }
-        }}
-      />
-      <View >
-        <Text style={styles.receptionText}>Ops, parece que faltou criatividade para continuar a falta de criatividade de matrioshka</Text>
-        <Link style={styles.link} href={"/listagem"}>Você pode voltar clicando aqui!</Link>
-        <Text style={styles.paramText}>Ah! Seu parametro é aleatório e sem nenhuma criatividade foi <Text style={styles.param}>{id}</Text></Text>
-      </View>
-    </View>
+    <FullScreen>
+      <HeaderWithTitle title='Sobre' about={false} />
+      <Scrollable>
+        <Text style={styles.cardTitle}>Lorem Ipsum</Text>
+        <Card title='version 1.0'>
+          <View style={styles.cardContent}>
+            <Text style={styles.owner}>developed by</Text>
+            <Text style={styles.name}>Pedro Afonso Carraro</Text>
+            <Link style={styles.address} href={"https://github.com/paccarrar0"}>Link: https://github.com/paccarrar0</Link>
+          </View>
+        </Card>
+      </Scrollable>
+      <Footer />
+    </FullScreen>
   )
 }
 
 
 const styles = StyleSheet.create({
-  receptionText: {
+  cardTitle: {
+    marginTop: 30,
+    marginBottom: 45,
+    alignSelf: "center",
+    fontSize: 35
+  },
+  cardContent: {
+    alignSelf: "center",
+    marginTop: 35
+  },
+  name: {
+    marginBottom: 10,
     fontSize: 20,
-    marginTop: 10,
-    marginLeft: "5%"
+    textDecorationLine: 'underline',
+    fontStyle: "italic"
   },
-
-  link: {
-    marginTop: 10,
-    marginLeft: "5%",
-    color: "#00BFFF",
+  owner: {
+    fontSize: 25,
+    alignSelf: "center",
+    marginBottom: 40
   },
-
-  paramText: {
+  address: {
     fontSize: 15,
-    marginTop: 10,
-    marginLeft: "5%"
-  },
-
-  param: {
-    color: "#00BFFF"
+    color: "#20b2aa"
   }
 })

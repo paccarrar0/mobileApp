@@ -8,10 +8,11 @@ import { useRouter } from 'expo-router';
 import { Text } from 'react-native-svg';
 import { useAuth } from '../AuthContext';
 
-export default function index() {
+export default function Index() {
+  const router = useRouter();
+  const {login} = useAuth();
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const router = useRouter();
   const [wrongPassword, setWrongPassword] = useState(false);
   const [wrongUser, setWrongUser] = useState(false);
 
@@ -28,8 +29,10 @@ export default function index() {
       setWrongPassword(false)
     }
 
-    if(userName == "Fulano" && userPassword == "123")
-      router.navigate("/listagem")
+    if(userName == "Fulano" && userPassword == "123"){
+      login();
+      router.replace("/listagem")
+    }
   }
 
   return (
