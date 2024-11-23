@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text} from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import React, { useEffect } from "react";
 import { useRouter } from "expo-router";
 import Footer from "../components/Footer";
@@ -7,9 +7,10 @@ import HeaderWithTitle from "../components/header/HeaderWithTitle";
 import { useAuth } from "../AuthContext";
 import Scrollable from "../components/container/Scrollable";
 import Card from "../components/container/Card";
+import PassengerList from "../components/PassengersList";
 
 
-export default function Listagem() {
+export default function Listing() {
   const router = useRouter();
   const { isAuthenticated } = useAuth();
 
@@ -27,15 +28,13 @@ export default function Listagem() {
           <View>
             <Text style={styles.cardTitle}>Lorem Ipsum</Text>
             <Card>
-              <View></View>
+              <PassengerList></PassengerList>
             </Card>
           </View>
-
         </View>
       </Scrollable>
       <Footer></Footer>
     </FullScreen>
-
   );
 }
 

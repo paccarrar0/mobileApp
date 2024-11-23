@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native'
-import React from 'react'
+import { View, StyleSheet, Pressable } from 'react-native'
+import React, { useState } from 'react'
 import { FontAwesome } from '@expo/vector-icons';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useRouter } from 'expo-router';
@@ -10,6 +10,7 @@ type HeaderMenuProps = {
 }
 
 export default function HeaderMenu({ about }: HeaderMenuProps) {
+  const [destructiveButton, setDestructiveButton] = useState(Number)
   const router = useRouter();
   const { logout } = useAuth();
 
@@ -18,9 +19,10 @@ export default function HeaderMenu({ about }: HeaderMenuProps) {
   }
 
   const aboutActionSheet = () => {
-    if (about)
+    if (about){
+      setDestructiveButton(0)
       return ["Sobre", "Logout"]
-
+    }
     return ["Logout"]
   }
 
@@ -28,7 +30,9 @@ export default function HeaderMenu({ about }: HeaderMenuProps) {
 
   const handlePress = () => {
     showActionSheetWithOptions({
-      options: aboutActionSheet()
+      options: aboutActionSheet(),
+      destructiveButtonIndex: destructiveButton
+      
     },
       (i) => {
         getIndexByScreen(i)

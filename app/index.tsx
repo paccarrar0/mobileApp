@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Image, StyleSheet, View } from 'react-native'
+import { Image, StyleSheet, View } from 'react-native'
 import FullScreen from '../components/container/FullScreen';
 import NoHeader from '../components/header/NoHeader';
 import Input from '../components/Input';
@@ -10,26 +10,26 @@ import { useAuth } from '../AuthContext';
 
 export default function Index() {
   const router = useRouter();
-  const {login} = useAuth();
+  const { login } = useAuth();
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [wrongPassword, setWrongPassword] = useState(false);
   const [wrongUser, setWrongUser] = useState(false);
 
   const handleLogin = () => {
-    if(userName != "Fulano" && userName != ""){
+    if (userName != "Fulano" && userName != "") {
       setWrongUser(true)
-    }else{
+    } else {
       setWrongUser(false)
     }
 
-    if(userPassword != "123" && userPassword != ""){
+    if (userPassword != "123" && userPassword != "") {
       setWrongPassword(true)
-    }else{
+    } else {
       setWrongPassword(false)
     }
 
-    if(userName == "Fulano" && userPassword == "123"){
+    if (userName == "Fulano" && userPassword == "123") {
       login();
       router.replace("/listagem")
     }
@@ -50,9 +50,9 @@ export default function Index() {
           />
         </View>
         <View style={styles.inputBlock}>
-          <Input password={false} placeholder='Usuário' value={userName} onChangeText={setUserName} />        
+          <Input password={false} placeholder='Usuário' value={userName} onChangeText={setUserName} />
           {wrongUser ? (<Text>Usuário incorreto</Text>) : (null)}
-          
+
           <Input password={true} placeholder='Senha' value={userPassword} onChangeText={setUserPassword} />
           {wrongPassword ? (<Text>Senha incorreta</Text>) : (null)}
         </View>

@@ -1,6 +1,6 @@
-import React, { Component, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-import { Link, router, Stack, useLocalSearchParams } from 'expo-router'
+import { Link, router } from 'expo-router'
 import { useAuth } from '../AuthContext';
 import HeaderWithTitle from '../components/header/HeaderWithTitle';
 import FullScreen from '../components/container/FullScreen';
@@ -8,8 +8,7 @@ import Footer from '../components/Footer';
 import Card from '../components/container/Card';
 import Scrollable from '../components/container/Scrollable';
 
-export default function creativeless() {
-  const { id } = useLocalSearchParams();
+export default function About() {
   const { isAuthenticated } = useAuth();
 
   useEffect(() => {
