@@ -6,7 +6,7 @@ interface Passenger {
   destination: string;
 }
 
-interface SectionData {
+export interface SectionData {
   title: string;
   data: Passenger[];
 }

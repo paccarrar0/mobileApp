@@ -1,13 +1,15 @@
 import { View, StyleSheet, Text } from "react-native";
 import React, { useEffect } from "react";
 import { useRouter } from "expo-router";
-import Footer from "../components/Footer";
+import Footer from "../components/shared/Footer";
 import FullScreen from "../components/container/FullScreen";
 import HeaderWithTitle from "../components/header/HeaderWithTitle";
-import { useAuth } from "../AuthContext";
+import { useAuth } from "../../AuthContext";
 import Scrollable from "../components/container/Scrollable";
 import Card from "../components/container/Card";
-import PassengerList from "../components/PassengersList";
+import PassengerList from "../components/passengers/PassengersList";
+
+
 
 
 export default function Listing() {
@@ -16,25 +18,29 @@ export default function Listing() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      router.replace("/")
+      setTimeout(() => {
+        router.replace("/")
+      }, 10)
     }
   }), [isAuthenticated, router]
 
   return (
+
     <FullScreen>
       <Scrollable>
         <View>
-          <HeaderWithTitle title="Listagem" about={true} />
+          <HeaderWithTitle title="Listing" sheetOptions={["About", "Logout"]} destructiveButton={1} />
           <View>
-            <Text style={styles.cardTitle}>Lorem Ipsum</Text>
+            <Text style={styles.cardTitle}>Duty Free</Text>
             <Card>
-              <PassengerList></PassengerList>
+              <PassengerList />
             </Card>
           </View>
         </View>
       </Scrollable>
       <Footer></Footer>
     </FullScreen>
+
   );
 }
 

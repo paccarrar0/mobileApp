@@ -4,7 +4,7 @@ import React from 'react'
 export default function Footer() {
   return (
     <View style={styles.container}>
-      <Text style={styles.footerText}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</Text>
+      <Text style={styles.footerText}>A very very chill footer</Text>
     </View>
   )
 }
@@ -12,14 +12,16 @@ export default function Footer() {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 40,
+    height: 50,
     backgroundColor: "white",
     position: "absolute",
     bottom: 0,
-    justifyContent: "center"
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "#C4C4C4"
   },
   footerText: {
-    fontSize: 10,
+    fontSize: 15,
     marginHorizontal: "auto"
   }
 });

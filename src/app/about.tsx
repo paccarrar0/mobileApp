@@ -1,27 +1,31 @@
 import React, { useEffect } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import { Link, router } from 'expo-router'
-import { useAuth } from '../AuthContext';
+import { useAuth } from '../../AuthContext';
 import HeaderWithTitle from '../components/header/HeaderWithTitle';
 import FullScreen from '../components/container/FullScreen';
-import Footer from '../components/Footer';
+import Footer from '../components/shared/Footer';
 import Card from '../components/container/Card';
 import Scrollable from '../components/container/Scrollable';
+
 
 export default function About() {
   const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     if (!isAuthenticated) {
-      router.replace("/")
+      setTimeout(() => {
+        router.replace("/")
+      }, 10)
     }
   }), [isAuthenticated, router]
 
   return (
+
     <FullScreen>
-      <HeaderWithTitle title='Sobre' about={false} />
+      <HeaderWithTitle title='About' sheetOptions={["Logout"]} destructiveButton={0} />
       <Scrollable>
-        <Text style={styles.cardTitle}>Lorem Ipsum</Text>
+        <Text style={styles.cardTitle}>Duty Free</Text>
         <Card title='version 1.0'>
           <View style={styles.cardContent}>
             <Text style={styles.owner}>developed by</Text>
@@ -32,6 +36,7 @@ export default function About() {
       </Scrollable>
       <Footer />
     </FullScreen>
+
   )
 }
 

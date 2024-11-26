@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SectionList, Text, View, Image } from 'react-native';
-import data from "../services/data-passengers"
-import formatDataForSectionList from "../services/helper";
+import data from "../../services/data-passengers"
+import formatDataForSectionList from "../../services/helper";
 
-// Usando o helper para gerar os dados das seções
-const PassengerList = () => {
-  const passengers = data
-
-  const sections = formatDataForSectionList(passengers);
+export default function PassengerList() {
+  const sections = formatDataForSectionList(data);
 
   return (
     <SectionList
       sections={sections}
       keyExtractor={(item) => item.id.toString()}
+      getItemLayout={(data, index) => ({
+        length: 60,
+        offset: 60 * index,
+        index,
+      })}
       renderItem={({ item }) => (
         <View style={{ flexDirection: 'row', alignItems: 'center', margin: 10 }}>
           <Image
@@ -30,5 +32,3 @@ const PassengerList = () => {
     />
   );
 };
-
-export default PassengerList;

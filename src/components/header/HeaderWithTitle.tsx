@@ -4,10 +4,11 @@ import HeaderMenu from './HeaderMenu'
 
 type HeaderProps = {
   title: string,
-  about: boolean
+  sheetOptions: string[],
+  destructiveButton: number
 }
 
-export default function HeaderWithTitle({title, about}: HeaderProps) {
+export default function HeaderWithTitle({ title, sheetOptions, destructiveButton}: HeaderProps) {
 
   return (
     <Stack.Screen
@@ -17,7 +18,10 @@ export default function HeaderWithTitle({title, about}: HeaderProps) {
           fontWeight: "bold",
           fontSize: 19,
         },
-        headerRight: () => about ? (<HeaderMenu about={true}/>) : (<HeaderMenu about={false}/>)
+        headerRight: () => 
+          
+        (<HeaderMenu sheetOptions={sheetOptions} destructiveButton={destructiveButton}/>) 
+        
       }}
     />
   )

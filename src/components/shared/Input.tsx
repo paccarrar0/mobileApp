@@ -1,6 +1,6 @@
 import { View, TextInput, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
-import { DEFAULT_RADIUS } from '../constants/globalStyles'
+import { DEFAULT_RADIUS } from '../../constants/globalStyles'
 
 type InputProps = {
   password: boolean

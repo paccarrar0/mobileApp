@@ -1,6 +1,6 @@
 import { View, Text, Pressable, StyleSheet, Animated, Image } from 'react-native'
 import React, {useRef } from 'react'
-import { DEFAULT_RADIUS } from '../constants/globalStyles'
+import { DEFAULT_RADIUS } from '../../constants/globalStyles'
 
 type ButttonProps = {
   handleLogin: () => void

@@ -3,36 +3,24 @@ import React, { useState } from 'react'
 import { FontAwesome } from '@expo/vector-icons';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useRouter } from 'expo-router';
-import { useAuth } from '../../AuthContext';
+import { useAuth } from '../../../AuthContext';
 
 type HeaderMenuProps = {
-  about: boolean
+  sheetOptions: string[];
+  destructiveButton: number;
 }
 
-export default function HeaderMenu({ about }: HeaderMenuProps) {
-  const [destructiveButton, setDestructiveButton] = useState(Number)
+export default function HeaderMenu({ sheetOptions, destructiveButton }: HeaderMenuProps) {
   const router = useRouter();
   const { logout } = useAuth();
-
-  const handleNavigation = (path: string) => {
-    router.navigate(path)
-  }
-
-  const aboutActionSheet = () => {
-    if (about){
-      setDestructiveButton(0)
-      return ["Sobre", "Logout"]
-    }
-    return ["Logout"]
-  }
 
   const { showActionSheetWithOptions } = useActionSheet();
 
   const handlePress = () => {
     showActionSheetWithOptions({
-      options: aboutActionSheet(),
+      options: sheetOptions,
       destructiveButtonIndex: destructiveButton
-      
+
     },
       (i) => {
         getIndexByScreen(i)
@@ -40,11 +28,15 @@ export default function HeaderMenu({ about }: HeaderMenuProps) {
     )
   }
 
+  const handleNavigation = (path: string) => {
+    router.navigate(path)
+  }
+
   const getIndexByScreen = (i: number | undefined) => {
-    if (about) {
+    if (sheetOptions.length == 2) {
       switch (i) {
         case 0:
-          handleNavigation("/sobre")
+          handleNavigation("/about")
           break;
         case 1:
           logout();
