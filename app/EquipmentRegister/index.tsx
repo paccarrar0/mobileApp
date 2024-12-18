@@ -19,21 +19,8 @@ export default function EquipmentRegister() {
   const [price, setPrice] = useState<string>('');
   const router = useRouter();
 
-  const [equipment, setEquipment] = useState<Equipment | null>(null);
-  const [upsert, setUpsert] = useState<((newVal: Equipment) => Promise<string>) | null>(null);
-
   const { create } = useCollection<Equipment>('equipments');
-
-  useEffect(() => {
-    if (update == "true") {
-      const fetchData = async () => {
-        const { data, upsert } = useDocument<Equipment>('equipments', id as string);
-        setEquipment(data || null);
-        setUpsert(() => upsert);
-      };
-      fetchData();
-    }
-  }, [update, id]);
+  const { data, upsert } = useDocument<Equipment>('equipments', id as string);
 
   const handleCreate = async () => {
 
@@ -70,16 +57,14 @@ export default function EquipmentRegister() {
         return;
       }
 
-      if (upsert) {
-        await upsert({
-          ...equipment,
-          name,
-          category,
-          price: Number(price),
-        });
-      } else {
-        alert("Error, cannot update equipment: upsert function is not available.");
-      }
+      await upsert({
+        ...data,
+        name,
+        category,
+        price: Number(price),
+      });
+
+
 
       alert("Success, equipment updated successfully!");
       router.back();
@@ -134,4 +119,3 @@ export default function EquipmentRegister() {
     </View>
   );
 }
-

@@ -21,7 +21,7 @@ export type Book = {
  */
 export default function useDocument<T extends { [x: string]: any }>(
   collectionName: string,
-  id: string,
+  id?: string,
   realtime: boolean = true
 ) {
   useFirebase();
@@ -30,7 +30,7 @@ export default function useDocument<T extends { [x: string]: any }>(
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<T>();
 
-  const docRef = doc(db, collectionName, id);
+  const docRef = doc(db, collectionName, id || "default-id");
 
   /**
    * Create or update a document in the given collection.
