@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import loginStyles from '../../styles/loginStyles';
 import Input from '../../components/shared/Input';
 import SimpleButton from '../../components/shared/SimpleButton';
@@ -11,16 +11,31 @@ import globalStyles from '../../styles/globalStyles';
 import { useGlobalSearchParams } from 'expo-router';
 import useDocument from '../../firebase/hooks/useDocument';
 
+
 export default function EquipmentRegister() {
   const { update, id } = useGlobalSearchParams();
   const [name, setName] = useState<string>('');
   const [category, setCategory] = useState<string>('');
   const [price, setPrice] = useState<string>('');
-
   const router = useRouter();
 
+  const [equipment, setEquipment] = useState<Equipment | null>(null);
+  const [upsert, setUpsert] = useState<((newVal: Equipment) => Promise<string>) | null>(null);
+
+  const { create } = useCollection<Equipment>('equipments');
+
+  useEffect(() => {
+    if (update == "true") {
+      const fetchData = async () => {
+        const { data, upsert } = useDocument<Equipment>('equipments', id as string);
+        setEquipment(data || null);
+        setUpsert(() => upsert);
+      };
+      fetchData();
+    }
+  }, [update, id]);
+
   const handleCreate = async () => {
-    const { create } = useCollection<Equipment>('equipments');
 
     try {
       if (!name || !category || !price) {
@@ -46,24 +61,25 @@ export default function EquipmentRegister() {
     }
   }
 
-  const handleUpdate = async () => {
-    const {
-      data: equipment,
-      upsert
-    } = useDocument<Equipment>('equipments', id as string);
 
+
+  const handleUpdate = async () => {
     try {
       if (isNaN(Number(price))) {
         alert("Error, the price field must be a number.");
         return;
       }
 
-      await upsert({
-        ...equipment,
-        name,
-        category,
-        price: Number(price),
-      });
+      if (upsert) {
+        await upsert({
+          ...equipment,
+          name,
+          category,
+          price: Number(price),
+        });
+      } else {
+        alert("Error, cannot update equipment: upsert function is not available.");
+      }
 
       alert("Success, equipment updated successfully!");
       router.back();
@@ -72,14 +88,14 @@ export default function EquipmentRegister() {
     }
   }
 
-  const handleSubmit = () => {
-
+  const handleSubmit = async () => {
 
     if (update == "true") {
-      handleUpdate();
+      await handleUpdate();
     } else {
-      handleCreate();
+      await handleCreate();
     }
+
   };
 
   return (
