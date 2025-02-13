@@ -29,14 +29,14 @@ export default function HeaderMenu({ sheetOptions, destructiveButton }: HeaderMe
   }
 
   const handleNavigation = (path: string) => {
-    router.navigate(path)
+    router.push(path)
   }
 
   const getIndexByScreen = (i: number | undefined) => {
     if (sheetOptions.length == 2) {
       switch (i) {
         case 0:
-          handleNavigation("/about")
+          handleNavigation("/trap")
           break;
         case 1:
           logout();

@@ -57,7 +57,7 @@ export default function Index() {
           {wrongPassword ? (<Text>Senha incorreta</Text>) : (null)}
         </View>
 
-        <ButtonComponent handleLogin={handleLogin} imageSource='https://pt.quizur.com/_image?href=https://static.quizur.com/i/b/59a320f8ae6fc4.1987066359a320f8725e80.76888033.jpg&w=600&h=600&f=webp'></ButtonComponent>
+        <ButtonComponent handleLogin={handleLogin} imageSource='https://pt.quizur.com/_image?href=https://static.quizur.com/i/b/59a320f8ae6fc4.1987066359a320f8725e80.76888033.jpg&w=600&h=600&f=webp' buttonText='Entrar'></ButtonComponent>
       </View>
     </FullScreen>
   )

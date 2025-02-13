@@ -1,13 +1,15 @@
 import { View, Text, Pressable, StyleSheet, Animated, Image } from 'react-native'
 import React, {useRef } from 'react'
 import { DEFAULT_RADIUS } from '../../constants/globalStyles'
+import { text } from '@fortawesome/fontawesome-svg-core'
 
 type ButttonProps = {
   handleLogin: () => void
   imageSource: string
+  buttonText: string
 }
 
-export default function ImageButton({ handleLogin, imageSource }: ButttonProps) {
+export default function ImageButton({ handleLogin, imageSource, buttonText }: ButttonProps) {
 
   const scaleValue = useRef(new Animated.Value(1)).current;
 
@@ -36,7 +38,7 @@ export default function ImageButton({ handleLogin, imageSource }: ButttonProps) 
           onPressOut={handlePressOut}
         >
           <View style={styles.content}>
-            <Text style={styles.buttonText}>Entrar</Text>
+            <Text style={styles.buttonText}>{buttonText}</Text>
             <Image resizeMode='cover' style={styles.image} source={{uri: imageSource}}/>
           </View>
         </Pressable>
