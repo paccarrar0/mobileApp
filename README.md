@@ -23,7 +23,7 @@ Também é necessária a configuração prévia de um emulador android;
 ### Clonar o repositório
 Clone o repositório com o seguinte comando.
 
-` tetetetete `
+` git clone --branch feature/ava2 --single-branch git@github.com:paccarrar0/mobileApp.git `
 
 ### Instalar dependeências do projeto
 Na pasta clonada, instale as dependências com o seguinte comando
@@ -49,4 +49,8 @@ Os testes E2E podem ser rodados com o seguinte comando(Em outra instância do te
 
 ` npm run e2eTests `
 
+---
 
+# Diferença entre testes unitários e E2E
+
+Os testes unitários tem como propósito testar partes isoladas do código como funções, componentes, etc. Eles contam com uma execução rápida tenod em vista que não possuem integração com o resto do sistema. Os testes E2E (End to End) visam testar um fluxo de ações completo, simulando o acesso de um usuário e, com isso, testando todas as partes do sistema em conjunto. Estes testes são mais lentos devido ao fato de eles integrarem toda a infraestrutura do sistema.
