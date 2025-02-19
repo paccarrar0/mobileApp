@@ -3,9 +3,6 @@ appId: "host.exp.exponent"
 ---
 
 - runFlow:
-    file: './helpers/load.yaml'
-
-- runFlow:
     file: './skipMessagesTest.yaml'
 
 - tapOn:

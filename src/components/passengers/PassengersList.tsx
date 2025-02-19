@@ -9,7 +9,7 @@ export default function PassengerList() {
   return (
     <SectionList
       sections={sections}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item, index) => `${item.id}-${index}`}
       getItemLayout={(data, index) => ({
         length: 60,
         offset: 60 * index,
