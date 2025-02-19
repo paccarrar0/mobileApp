@@ -4,9 +4,10 @@
 
 ## Instalação de dependências
 
-É necessária a instalação do Jest através do comando;
+É necessária a instalação do Jest através dos comandos;
 
 ` npm install --save-dev @testing-library/react-native jest-react-native --legacy-peer-deps `
+
 ` npm install --save-dev jest @types/jest ts-jest --legacy-peer-deps `
 
 Do maestro através do comando;
@@ -39,12 +40,12 @@ Permanecendo na mesma pasta, rode o seguinte comando para iniciar o projeto no e
 ## Rodando os testes
 
 ### Testes unitários
-Os testes unitários podem ser rodados com o comando abaixo
+Os testes unitários podem ser rodados com o comando abaixo(Em outra instância do terminal)
 
 ` jest `
 
 ### Testes E2E
-Os testes E2E podem ser rodados com o seguinte comando
+Os testes E2E podem ser rodados com o seguinte comando(Em outra instância do terminal)
 
 ` npm run e2eTests `
 
