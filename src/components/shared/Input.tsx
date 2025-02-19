@@ -6,14 +6,16 @@ type InputProps = {
   password: boolean
   placeholder: string
   value: string
+  id: string
   onChangeText: (text: string) => void
 }
 
-export default function Input({ password, placeholder, value, onChangeText}: InputProps) {
+export default function Input({ password, placeholder, value, id, onChangeText}: InputProps) {
 
   return (
     <View>
       <TextInput
+        testID={id}
         style={styles.input}
         placeholder={placeholder}
         value={value}

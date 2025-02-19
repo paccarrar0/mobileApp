@@ -8,9 +8,10 @@ import { useAuth } from '../../../AuthContext';
 type HeaderMenuProps = {
   sheetOptions: string[];
   destructiveButton: number;
+  id: string;
 }
 
-export default function HeaderMenu({ sheetOptions, destructiveButton }: HeaderMenuProps) {
+export default function HeaderMenu({ sheetOptions, destructiveButton, id }: HeaderMenuProps) {
   const router = useRouter();
   const { logout } = useAuth();
 
@@ -54,7 +55,7 @@ export default function HeaderMenu({ sheetOptions, destructiveButton }: HeaderMe
 
   return (
     <View style={styles.icon}>
-      <Pressable onPress={() => handlePress()}>
+      <Pressable testID={id} onPress={() => handlePress()}>
         <FontAwesome size={22} name={"bars"} />
       </Pressable>
     </View>

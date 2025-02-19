@@ -21,7 +21,7 @@ const TypingEffect = ({ text, speed = 50, onComplete }: { text: string; speed?: 
       } else {
         clearInterval(interval);
         if (onComplete) {
-          setTimeout(onComplete, 500); // Chama o onComplete quando a animação acabar
+          setTimeout(onComplete, 500);
         }
       }
     }, speed);
@@ -37,7 +37,7 @@ export default function Trap() {
   const [currentMessage, setCurrentMessage] = useState(0);
   const [answers, setAnswers] = useState<string[]>(["", "", ""]);
   const [currentProblem, setCurrentProblem] = useState(0);
-  const [isTypingComplete, setIsTypingComplete] = useState(false); // Novo estado para controlar a animação
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   const messages = [
     "Did you think that it would be easy?",
@@ -58,26 +58,24 @@ export default function Trap() {
   const problems = [
     { question: "5 + 3", answer: "8" },
     { question: "15 * 2", answer: "30" },
-    { question: "√(12321)", answer: "111" }, // Você pode criar uma equação mais difícil aqui
+    { question: "√(12321)", answer: "111" }
   ];
 
   const handleAnswerSubmit = (index: number) => {
     if (answers[index] === problems[index].answer) {
       if (index === problems.length - 1) {
-        // Se o usuário acertou todos os problemas, ele vai para uma nova tela
-        router.push("/about"); // Ou para qualquer tela de sucesso que você tenha
+        router.push("/about");
       } else {
-        setCurrentProblem(index + 1); // Avançar para o próximo problema
+        setCurrentProblem(index + 1);
       }
     } else {
-      router.push("/lose"); // Ou para qualquer tela de falha que você tenha
+      router.push("/lose");
     }
   };
 
   const handleScreenPress = () => {
-    // Avança imediatamente para a última mensagem e começa a mostrar os problemas
-    setCurrentMessage(messages.length); // Pular para a última mensagem
-    setIsTypingComplete(true); // Marca a animação como completa
+    setCurrentMessage(messages.length);
+    setIsTypingComplete(true);
   };
 
   useEffect(() => {
@@ -95,7 +93,7 @@ export default function Trap() {
 
         <TouchableWithoutFeedback onPress={handleScreenPress}>
           <View style={styles.chatContainer}>
-            {/* Exibe a conversa normalmente até o clique */}
+            {}
             {messages.map((msg, index) => (
               currentMessage >= index && (
                 <View key={index} style={styles.chatBubble}>
@@ -103,9 +101,9 @@ export default function Trap() {
                     text={msg}
                     speed={25}
                     onComplete={() => {
-                      setCurrentMessage((prev) => prev + 1); // Avança a mensagem
+                      setCurrentMessage((prev) => prev + 1);
                       if (index === messages.length - 1) {
-                        setIsTypingComplete(true); // Marca o fim da animação
+                        setIsTypingComplete(true);
                       }
                     }}
                   />
@@ -113,11 +111,12 @@ export default function Trap() {
               )
             ))}
 
-            {/* Exibição de problemas e inputs para respostas */}
+            {}
             {isTypingComplete && currentProblem < problems.length && (
               <View style={styles.problemContainer}>
                 <Text style={styles.problemText}>Solve: {problems[currentProblem].question}</Text>
                 <TextInput
+                  testID="answerInput"
                   style={styles.input}
                   value={answers[currentProblem]}
                   onChangeText={(text) => {
@@ -128,7 +127,7 @@ export default function Trap() {
                   keyboardType="numeric"
                   placeholder="Your answer"
                 />
-                <Button title="Submit" onPress={() => handleAnswerSubmit(currentProblem)} />
+                <Button testID="submitButton" title="Submit" onPress={() => handleAnswerSubmit(currentProblem)} />
               </View>
             )}
           </View>

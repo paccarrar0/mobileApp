@@ -1,0 +1,41 @@
+appId: 'host.exp.exponent'
+---
+- launchApp:
+    appId: 'host.exp.exponent'
+    clearState: true
+
+- openLink:
+    link: 'exp://192.168.15.11:8081'
+
+- assertVisible: 'Continue'
+
+- tapOn:
+    point: '50%, 10%'
+
+- assertVisible: 'User'
+- assertVisible: 'Password'
+
+- tapOn:
+    id: 'userInput'
+
+- inputText:
+    id: 'userInput'
+    text: 'fulano'
+
+- tapOn:
+    id: 'passwordInput'
+
+- inputText:
+    id: 'passwordInput'
+    text: '123'
+
+- tapOn:
+    id: 'submitButton'
+
+- tapOn:
+    id: 'sheetOptions'
+
+- assertVisible: 'About'
+
+- tapOn:
+    text: 'About'

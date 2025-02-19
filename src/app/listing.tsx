@@ -27,8 +27,7 @@ export default function Listing() {
   return (
 
     <FullScreen>
-      <Scrollable>
-        <View>
+        
           <HeaderWithTitle title="Listing" sheetOptions={["About", "Logout"]} destructiveButton={1} />
           <View>
             <Text style={styles.cardTitle}>Duty Free</Text>
@@ -36,11 +35,9 @@ export default function Listing() {
               <PassengerList />
             </Card>
           </View>
-        </View>
-      </Scrollable>
+        
       <Footer></Footer>
     </FullScreen>
-
   );
 }
 

@@ -1,0 +1,11 @@
+appId: "host.exp.exponent"
+
+---
+
+- runFlow:
+    file: './helpers/load.yaml'
+
+- tapOn:
+    point: '50%, 10%'
+
+- assertVisible: "And I'm gonna have flows to make my tests, so, let's go!"

@@ -1,0 +1,51 @@
+appId: "host.exp.exponent"
+
+---
+
+- runFlow:
+    file: './helpers/load.yaml'
+
+- runFlow:
+    file: './skipMessagesTest.yaml'
+
+- tapOn:
+    id: 'answerInput'
+
+- inputText:
+    id: 'answerInput'
+    text: '8'
+
+- tapOn:
+    point: '50%, 10%'
+
+- tapOn:
+    id: 'submitButton'
+
+- tapOn:
+    id: 'answerInput'
+
+- inputText:
+    id: 'answerInput'
+    text: '30'
+
+- tapOn:
+    point: '50%, 10%'
+
+- tapOn:
+    id: 'submitButton'
+
+- tapOn:
+    id: 'answerInput'
+
+- inputText:
+    id: 'answerInput'
+    text: '111'
+
+- tapOn:
+    point: '50%, 10%'
+
+- tapOn:
+    id: 'submitButton'
+
+- assertVisible:
+    text: 'Duty Free'

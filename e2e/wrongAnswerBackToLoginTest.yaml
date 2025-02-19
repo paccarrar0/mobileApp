@@ -1,0 +1,9 @@
+appId: 'host.exp.exponent'
+
+---
+
+- tapOn:
+    id: 'backButton'
+
+- assertVisible: 'User'
+- assertVisible: 'Password'

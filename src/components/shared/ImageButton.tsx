@@ -7,9 +7,10 @@ type ButttonProps = {
   handleLogin: () => void
   imageSource: string
   buttonText: string
+  id: string
 }
 
-export default function ImageButton({ handleLogin, imageSource, buttonText }: ButttonProps) {
+export default function ImageButton({ handleLogin, imageSource, buttonText, id }: ButttonProps) {
 
   const scaleValue = useRef(new Animated.Value(1)).current;
 
@@ -32,6 +33,7 @@ export default function ImageButton({ handleLogin, imageSource, buttonText }: Bu
       <View>
 
         <Pressable
+          testID={id}
           style={[styles.button]}
           onPress={handleLogin}
           onPressIn={handlePressIn}

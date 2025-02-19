@@ -50,14 +50,14 @@ export default function Index() {
           />
         </View>
         <View style={styles.inputBlock}>
-          <Input password={false} placeholder='User' value={userName} onChangeText={setUserName} />
+          <Input id='userInput'  password={false} placeholder='User' value={userName} onChangeText={setUserName} />
           {wrongUser ? (<Text>Usuário incorreto</Text>) : (null)}
 
-          <Input password={true} placeholder='Password' value={userPassword} onChangeText={setUserPassword} />
+          <Input id='passwordInput' password={true} placeholder='Password' value={userPassword} onChangeText={setUserPassword} />
           {wrongPassword ? (<Text>Senha incorreta</Text>) : (null)}
         </View>
 
-        <ButtonComponent handleLogin={handleLogin} imageSource='https://pt.quizur.com/_image?href=https://static.quizur.com/i/b/59a320f8ae6fc4.1987066359a320f8725e80.76888033.jpg&w=600&h=600&f=webp' buttonText='Entrar'></ButtonComponent>
+        <ButtonComponent id='submitButton' handleLogin={handleLogin} imageSource='https://pt.quizur.com/_image?href=https://static.quizur.com/i/b/59a320f8ae6fc4.1987066359a320f8725e80.76888033.jpg&w=600&h=600&f=webp' buttonText='Entrar'></ButtonComponent>
       </View>
     </FullScreen>
   )
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   },
   inputBlock: {
     marginTop: 80,
-    gap: 15
+    gap: 15,
   },
   errorText: {
     color: "red"

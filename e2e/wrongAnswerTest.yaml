@@ -1,0 +1,18 @@
+appId: 'host.exp.exponent'
+
+---
+
+- tapOn:
+    id: 'answerInput'
+
+- inputText:
+    id: 'answerInput'
+    text: '30'
+
+- tapOn:
+    point: '50%, 10%'
+
+- tapOn:
+    id: 'submitButton'
+
+- assertVisible: 'YOU LOST'

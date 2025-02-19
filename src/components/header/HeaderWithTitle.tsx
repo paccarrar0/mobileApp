@@ -20,7 +20,7 @@ export default function HeaderWithTitle({ title, sheetOptions, destructiveButton
         },
         headerRight: () => 
           
-        (<HeaderMenu sheetOptions={sheetOptions} destructiveButton={destructiveButton}/>) 
+        (<HeaderMenu sheetOptions={sheetOptions} destructiveButton={destructiveButton} id='sheetOptions'/>) 
         
       }}
     />
